@@ -1,5 +1,12 @@
+import pandas as pd
 import streamlit as st
 
-st.title('🎈 App Name')
+allbatches = pd.read_csv("allbatches.csv")
+roll = st.text_input("Enter Roll Number")
 
-st.write('Hello world!')
+out = allbatches.loc[allbatches['RollNo'].str.contains(roll)]
+
+if st.button('Check Results'):
+    st.write(out)
+else:
+    st.write('Wait for Results')
